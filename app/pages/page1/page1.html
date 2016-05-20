@@ -3,8 +3,13 @@
 </ion-navbar>
 <ion-content padding class="page1">
   <ion-row>
+     <ion-col width-20>Status:</ion-col>
+     <ion-col width-80>{{status}}</ion-col>
+  </ion-row>
+  <ion-row>
     <ion-col width-50>
-      <button (click)="checkForUpdate()">
+      <button (click)="checkForUpdate()"
+      [disabled]="isProcessing">
         Check For Update
       </button>
     </ion-col>
