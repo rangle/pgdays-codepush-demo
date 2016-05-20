@@ -12,6 +12,7 @@ export class Page1 {
   isProcessing: boolean = false;
   deployment: string = '';
   currentPackage: ILocalPackage;
+  downloadProgress: DownloadProgress;
   
   constructor(private appRef: ApplicationRef,
     private platform: Platform
@@ -73,12 +74,17 @@ export class Page1 {
     }
     this.appRef.tick();
   }
+  updateDownloadProgress(progress: DownloadProgress) {
+    this.downloadProgress = progress;
+    this.appRef.tick();
+  }
   sync(key) {
      codePush.sync((status) => this.syncHandler(status), {
       updateDialog: true,
       installMode: InstallMode.IMMEDIATE,
       deploymentKey: key
-    });
+     },
+      (progress) => this.updateDownloadProgress(progress));
   }
 
 }
