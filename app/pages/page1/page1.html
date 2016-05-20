@@ -44,4 +44,10 @@
       </button>
     </ion-col>
   </ion-row>
+  <ion-row>
+    <ion-col width-25>Progress:</ion-col>
+    <ion-col width-75>
+      {{downloadProgress?.receivedBytes}} / {{downloadProgress?.totalBytes}}
+    </ion-col>
+  </ion-row>
 </ion-content>
