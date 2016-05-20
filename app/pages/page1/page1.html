@@ -2,19 +2,32 @@
   <ion-title>Settings</ion-title>
 </ion-navbar>
 <ion-content padding class="page1">
+  <ion-list radio-group [(ngModel)]="deployment">
+   <ion-list-header>
+     Version
+   </ion-list-header>
+   <ion-item>
+     <ion-label>Staging</ion-label>
+     <ion-radio value="gHde0lsEJekgm946zOruuErzJUQr4JJvnXkxW"></ion-radio>
+   </ion-item>
+   <ion-item>
+     <ion-label>Production</ion-label>
+     <ion-radio value="njIoYROGGUwjUMJxAuOSdYYUNrIw4JJvnXkxW"></ion-radio>
+   </ion-item>
+ </ion-list>
   <ion-row>
      <ion-col width-20>Status:</ion-col>
      <ion-col width-80>{{status}}</ion-col>
   </ion-row>
   <ion-row>
     <ion-col width-50>
-      <button (click)="checkForUpdate()"
+      <button (click)="checkForUpdate(deployment)"
       [disabled]="isProcessing">
         Check For Update
       </button>
     </ion-col>
     <ion-col width-50>
-      <button (click)="sync()"
+      <button (click)="sync(deployment)"
         [disabled]="!isUpdateAvailable">
         Sync
       </button>
