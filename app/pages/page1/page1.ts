@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Page, Platform} from 'ionic-angular';
 import {ApplicationRef} from '@angular/core';
 declare const codePush: CodePushCordovaPlugin;
 
@@ -11,8 +11,23 @@ export class Page1 {
   status: string = '';
   isProcessing: boolean = false;
   deployment: string = '';
-  constructor(private appRef: ApplicationRef) { }
+  currentPackage: ILocalPackage;
+  
+  constructor(private appRef: ApplicationRef,
+    private platform: Platform
 
+  ) { }
+
+  ngOnInit() {
+    this.platform.ready().then(()=>this.getCurrentPackage())
+  }
+  
+  getCurrentPackage() {
+    codePush.getCurrentPackage((result: ILocalPackage) => {
+      this.currentPackage = result;  
+      this.appRef.tick();
+    })
+  }
   checkForUpdate(key) {
     this.isProcessing = true;
     this.status = 'Checking ... '
