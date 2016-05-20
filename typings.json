@@ -2,6 +2,7 @@
   "dependencies": {},
   "devDependencies": {},
   "ambientDependencies": {
+    "codePush": "github:Microsoft/cordova-plugin-code-push/typings/codePush.d.ts",
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654"
   }
 }
