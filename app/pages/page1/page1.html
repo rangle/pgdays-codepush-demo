@@ -1,15 +1,53 @@
 <ion-navbar *navbar>
-  <ion-title>Tab 1</ion-title>
+  <ion-title>Settings</ion-title>
 </ion-navbar>
-
 <ion-content padding class="page1">
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>app/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list radio-group [(ngModel)]="deployment">
+    <ion-list-header>
+      Version
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Staging</ion-label>
+      <ion-radio value="gHde0lsEJekgm946zOruuErzJUQr4JJvnXkxW"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Production</ion-label>
+      <ion-radio value="njIoYROGGUwjUMJxAuOSdYYUNrIw4JJvnXkxW"></ion-radio>
+    </ion-item>
+
+    <ion-list-header>
+      Installed Package
+    </ion-list-header>
+    <ion-item>
+      App Version: {{currentPackage?.appVersion}}
+    </ion-item>
+    <ion-item>
+      Description: {{currentPackage?.description}}
+    </ion-item>
+    <ion-item>
+      Label: {{currentPackage?.label}}
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col width-20>Status:</ion-col>
+    <ion-col width-80>{{status}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col width-50>
+      <button (click)="checkForUpdate(deployment)" [disabled]="isProcessing">
+        Check For Update
+      </button>
+    </ion-col>
+    <ion-col width-50>
+      <button (click)="sync(deployment)" [disabled]="!isUpdateAvailable" secondary>
+        Sync
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col width-25>Progress:</ion-col>
+    <ion-col width-75>
+      {{downloadProgress?.receivedBytes}} / {{downloadProgress?.totalBytes}}
+    </ion-col>
+  </ion-row>
 </ion-content>
